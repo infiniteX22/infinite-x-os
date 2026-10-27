@@ -17,7 +17,7 @@ export function parsePresentationCommand(text) {
   if (/^(?:stop presenting|stop sharing(?: the screen)?|bring wayne back)$/.test(value)) return { type: "stop-presenting" };
   if (/^(?:go|enter) fullscreen$/.test(value)) return { type: "fullscreen" };
   if (/^present (?:this )?(?:report|page|screen)$/.test(value)) return { type: "present-current" };
-  const open = value.match(/^open (.+?)( and present(?: (?:it|this|the page|this page|their progress|the progress))?)?$/);
+  const open = value.match(/^open (.+?)((?: and| to) present(?: (?:it|this|the page|this page|their progress|the progress))?)?$/);
   if (!open) return null;
   const route = resolvePresentationRoute(open[1]);
   return route ? { type: "open", route, present: Boolean(open[2]) } : { type: "unknown-route", label: open[1] };

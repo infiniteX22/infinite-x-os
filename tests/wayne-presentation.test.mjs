@@ -11,6 +11,8 @@ test("explicit navigation commands resolve only allowlisted application routes",
   assert.deepEqual(parsePresentationCommand("Open Team and Tasks"), { type: "open", route: "team", present: false });
   assert.deepEqual(parsePresentationCommand("Open Team and Tasks and present their progress"), { type: "open", route: "team", present: true });
   assert.deepEqual(parsePresentationCommand("Open Projects and present"), { type: "open", route: "projects", present: true });
+  assert.deepEqual(parsePresentationCommand("Open tenders to present."), { type: "open", route: "tenders", present: true });
+  assert.deepEqual(parsePresentationCommand("Open tenders and present."), { type: "open", route: "tenders", present: true });
   assert.deepEqual(parsePresentationCommand("Present this report"), { type: "present-current" });
   assert.deepEqual(parsePresentationCommand("Go fullscreen"), { type: "fullscreen" });
   assert.deepEqual(parsePresentationCommand("Stop sharing the screen"), { type: "stop-presenting" });
