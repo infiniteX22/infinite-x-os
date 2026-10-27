@@ -44,6 +44,8 @@ Wayne should identify Alex as the Director and himself as the operations assista
 While a Wayne session is active, speak one explicit command at a time:
 
 - **“Wayne, open Reports and present.”** opens Reports and changes the room into the in-application presentation layout.
+- **“Open Finance.”**, **“Open Team and Tasks.”**, **“Open Projects and present.”** and **“Open Team and Tasks and present their progress.”** use the same allowlisted navigation path.
+- All authorised sidebar destinations are supported: Dashboard, CRM, Projects, Team & Tasks, Quotations & Invoices, Tenders, Funding, Finance, Compliance, Documents, AI Meetings, Reports and Settings. Useful aliases include *team*, *quotations*, *invoices* and *tender radar*.
 - **“Open Tenders.”** navigates the underlying application without changing the room layout.
 - **“Present this report”** or **“Present this page”** presents the currently open section.
 - **“Go fullscreen.”** requests fullscreen for INFINITE-X OS. Browser activation rules may require selecting the displayed **Enter fullscreen** button once.
@@ -51,7 +53,9 @@ While a Wayne session is active, speak one explicit command at a time:
 
 These are local, allowlisted commands recognised only from final **user** transcript events for the active provider session. They are not LiveAvatar tools, do not control Teams or Zoom, and cannot open arbitrary URLs. Wayne’s speech, interim transcript text, historical transcripts and ordinary questions such as “How are our tenders doing?” do not execute navigation.
 
-Reports and Tender Radar prepare a privacy-filtered summary using the visible period or tender filters. The current provider integration supplies dynamic variables only when a session starts; it does not expose a verified mid-session context update. Use **Review context and restart Wayne** to inspect and explicitly consent to the refreshed context. This preserves the logical meeting but starts a new provider session; it never happens automatically.
+Reports, Tender Radar, Finance, Team & Tasks and Projects prepare privacy-filtered summaries using the visible period and available search/status/category filters. Other authorised sections still navigate and present, but use a generic section summary. The current provider integration supplies dynamic variables only when a session starts; it does not expose a verified mid-session context update. Use **Review context and restart Wayne** to inspect and explicitly consent to the refreshed context. This preserves the logical meeting but starts a new provider session; it never happens automatically.
+
+The Transcript tab distinguishes **Waiting for speech**, **Receiving transcript**, saved final text and connection/persistence errors. Interim provider chunks are provisional; only final user events can execute commands or become durable discussion. For a live check, turn the microphone on and speak one command. If no final user transcript appears after speech is detected, do not claim voice navigation worked—record the provider/microphone limitation and use visible navigation controls.
 
 ## Business problem and use case
 
@@ -75,7 +79,7 @@ The current live repository stores operational rows as named `IXRepositoryRecord
 
 - The server builds an allowlisted, role- and mode-filtered snapshot in `avatarBriefing`.
 - `liveavatar-provider.mjs` creates the existing LiveAvatar voice-agent session and supplies the named values through `voice_agent.dynamic_variables`.
-- The browser uses the provider’s Web SDK/LiveKit media session. No paid OpenAI fallback is required for this path.
+- The browser uses the vendored LiveKit client and mirrors the provider Web SDK’s documented `agent-response` event schema. Current `*.transcription.chunk` events are provisional; current `user.transcription` and `avatar.transcription` events are final. No paid OpenAI fallback is required for this path.
 - Current business facts and recorded meeting discussion are separate variables. The latest task update is included in `tasks_summary`; historical discussion comes only from captured transcript/recap records.
 - Email drafting is a suggestion captured from Wayne’s response. The application does not send it or mark it delivered. Meeting-minutes email also remains in preview/outbox because SMTP is not configured.
 
