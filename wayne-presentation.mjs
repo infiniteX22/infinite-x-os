@@ -1,20 +1,6 @@
-const destinations = [
-  ["dashboard", ["dashboard", "home", "business overview"]],
-  ["crm", ["crm", "clients", "client register"]],
-  ["projects", ["projects", "project register", "jobs"]],
-  ["team", ["team", "team and tasks", "tasks", "employees"]],
-  ["quotations", ["quotations", "quotes", "invoices", "quotations and invoices"]],
-  ["tenders", ["tenders", "tender radar", "bids"]],
-  ["funding", ["funding", "funding readiness"]],
-  ["finance", ["finance", "financials"]],
-  ["compliance", ["compliance", "compliance register"]],
-  ["documents", ["documents", "document register"]],
-  ["meetings", ["meetings", "ai meetings", "meeting history"]],
-  ["reports", ["reports", "report", "analytics"]],
-  ["settings", ["settings", "configuration"]]
-];
+import { APP_ROUTES } from "./app-routes.mjs";
 
-const aliasToRoute = new Map(destinations.flatMap(([route, aliases]) => aliases.map(alias => [alias, route])));
+const aliasToRoute = new Map(APP_ROUTES.flatMap(({route,aliases}) => aliases.map(alias => [alias, route])));
 
 function normalise(text) {
   return String(text || "").trim().toLowerCase().replace(/[.!?]+$/g, "").replace(/\s+/g, " ");
@@ -38,7 +24,7 @@ export function parsePresentationCommand(text) {
 }
 
 export function canOpenPresentationRoute(route, permissions = {}, role = "") {
-  if (!destinations.some(([name]) => name === route)) return false;
+  if (!APP_ROUTES.some(item => item.route === route)) return false;
   if (["finance", "funding", "quotations"].includes(route)) return Boolean(permissions.finance);
   if (route === "settings") return Boolean(permissions.director) || role === "Director";
   return true;
@@ -52,4 +38,4 @@ export function acceptPresentationEvent(event, activeSessionId, seen) {
   return true;
 }
 
-export const presentationRoutes = destinations.map(([route]) => route);
+export const presentationRoutes = APP_ROUTES.map(item => item.route);

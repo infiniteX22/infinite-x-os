@@ -6,7 +6,7 @@
   "description": "AI-powered project and business management platform with isolated Demo and Real modes",
   "scripts": {
     "start": "node server.mjs",
-    "check": "node --check server.mjs && node --check business-core.mjs && node --check openedge-repository.mjs && node --check liveavatar-provider.mjs && node --check liveavatar-events.mjs && node --check wayne-session-policy.mjs && node --check wayne-presentation.mjs && node --check email-delivery.mjs && node --check speech-format.mjs && node --check app.js",
+    "check": "node --check server.mjs && node --check business-core.mjs && node --check openedge-repository.mjs && node --check liveavatar-provider.mjs && node --check liveavatar-events.mjs && node --check app-routes.mjs && node --check wayne-session-policy.mjs && node --check wayne-presentation.mjs && node --check wayne-navigation.mjs && node --check email-delivery.mjs && node --check speech-format.mjs && node --check app.js",
     "test": "node --test tests/*.test.mjs",
     "verify": "npm run check && npm test",
     "verify:api:isolated": "node scripts/verify-api-isolated.mjs"
