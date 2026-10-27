@@ -39,6 +39,20 @@ Wayne should identify Alex as the Director and himself as the operations assista
 2. End the meeting. Explain that transcript continuity is saved locally/OpenEdge before provider-event deletion is requested.
 3. Open **Reports** and show the named project-progress bars, the tender-status donut and the financial comparison. State that R255,000 invoiced, R10,000 recorded receipts and R207,000 recorded expenses are separate record categories—not cash balance or profit.
 
+## Wayne voice presentation commands
+
+While a Wayne session is active, speak one explicit command at a time:
+
+- **“Wayne, open Reports and present.”** opens Reports and changes the room into the in-application presentation layout.
+- **“Open Tenders.”** navigates the underlying application without changing the room layout.
+- **“Present this report”** or **“Present this page”** presents the currently open section.
+- **“Go fullscreen.”** requests fullscreen for INFINITE-X OS. Browser activation rules may require selecting the displayed **Enter fullscreen** button once.
+- **“Stop presenting,” “Stop sharing the screen,”** or **“Bring Wayne back”** exits application presentation and restores the normal room without ending the session.
+
+These are local, allowlisted commands recognised only from final **user** transcript events for the active provider session. They are not LiveAvatar tools, do not control Teams or Zoom, and cannot open arbitrary URLs. Wayne’s speech, interim transcript text, historical transcripts and ordinary questions such as “How are our tenders doing?” do not execute navigation.
+
+Reports and Tender Radar prepare a privacy-filtered summary using the visible period or tender filters. The current provider integration supplies dynamic variables only when a session starts; it does not expose a verified mid-session context update. Use **Review context and restart Wayne** to inspect and explicitly consent to the refreshed context. This preserves the logical meeting but starts a new provider session; it never happens automatically.
+
 ## Business problem and use case
 
 Electrical-construction work produces dependencies, site evidence, approvals, invoices and funding needs across multiple people. Tendering adds deadlines and mandatory-document checks across all categories. INFINITE-X OS joins those records so a reported blocker can be traced from the employee update to management visibility, an authorised AI briefing, a meeting and an approved follow-up action.
@@ -81,6 +95,7 @@ The current live repository stores operational rows as named `IXRepositoryRecord
 
 - The live spoken result depends on LiveAvatar availability, account limits, microphone permission and network/media connectivity. The sandbox session is short and must not be restarted automatically.
 - Context is supplied at session start. Mid-session retrieval is not claimed; select history or explicitly restart to refresh it.
+- Voice navigation uses final user transcript events in the browser because no supported structured LiveAvatar action/tool interface was verified for this account integration. Physical spoken-command recognition still depends on the provider returning a final user transcript event.
 - Audio quality and the exact phrasing of a generated email are provider behaviours. The application captures a draft only when the response contains a subject and body.
 - Provider-event deletion cannot prove deletion from provider backups. SMTP remains preview-only unless an authorised no-cost account is configured and explicitly tested.
 - The installed OpenEdge licence is suitable for the local demonstration. It is not presented as a production remote-database entitlement.
