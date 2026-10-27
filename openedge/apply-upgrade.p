@@ -1,0 +1,10 @@
+DEFINE VARIABLE cSchema AS CHARACTER NO-UNDO.
+cSchema = SESSION:PARAMETER.
+IF cSchema = "" THEN cSchema = "openedge/repository-upgrade.df".
+RUN prodict/load_df.p (cSchema).
+IF ERROR-STATUS:ERROR THEN DO:
+  PUT UNFORMATTED "OPENEDGE_UPGRADE_ERROR" SKIP.
+  QUIT.
+END.
+PUT UNFORMATTED "OPENEDGE_UPGRADE_OK=" cSchema SKIP.
+QUIT.

@@ -1,0 +1,223 @@
+ADD TABLE "IXUser"
+  AREA "Schema Area"
+  LABEL "INFINITE-X user"
+ADD FIELD "ActorId" OF "IXUser" AS character FORMAT "x(40)" INITIAL "" LABEL "User ID"
+ADD FIELD "DisplayName" OF "IXUser" AS character FORMAT "x(100)" INITIAL ""
+ADD FIELD "RoleCode" OF "IXUser" AS character FORMAT "x(40)" INITIAL ""
+ADD FIELD "Active" OF "IXUser" AS logical INITIAL yes
+ADD INDEX "IXUserPK" ON "IXUser"
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "ActorId" ASCENDING
+
+ADD TABLE "IXProject" AREA "Schema Area"
+ADD FIELD "ProjectId" OF "IXProject" AS character FORMAT "x(40)" INITIAL ""
+ADD FIELD "ModeCode" OF "IXProject" AS character FORMAT "x(4)" INITIAL "REAL"
+ADD FIELD "Name" OF "IXProject" AS character FORMAT "x(120)" INITIAL ""
+ADD FIELD "ClientName" OF "IXProject" AS character FORMAT "x(120)" INITIAL ""
+ADD FIELD "OwnerId" OF "IXProject" AS character FORMAT "x(40)" INITIAL ""
+ADD FIELD "ProgressPct" OF "IXProject" AS integer INITIAL 0
+ADD FIELD "StatusCode" OF "IXProject" AS character FORMAT "x(30)" INITIAL "Active"
+ADD FIELD "DueDate" OF "IXProject" AS date
+ADD FIELD "BudgetCents" OF "IXProject" AS int64 INITIAL 0
+ADD FIELD "CostCents" OF "IXProject" AS int64 INITIAL 0
+ADD FIELD "Blocker" OF "IXProject" AS character FORMAT "x(300)" INITIAL ""
+ADD FIELD "UpdatedAt" OF "IXProject" AS datetime-tz
+ADD INDEX "IXProjectPK" ON "IXProject"
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "ProjectId" ASCENDING
+ADD INDEX "IXProjectMode" ON "IXProject"
+  AREA "Schema Area"
+  INDEX-FIELD "ModeCode" ASCENDING
+  INDEX-FIELD "StatusCode" ASCENDING
+
+ADD TABLE "IXTask" AREA "Schema Area"
+ADD FIELD "TaskId" OF "IXTask" AS character FORMAT "x(40)" INITIAL ""
+ADD FIELD "ModeCode" OF "IXTask" AS character FORMAT "x(4)" INITIAL "REAL"
+ADD FIELD "ProjectId" OF "IXTask" AS character FORMAT "x(40)" INITIAL ""
+ADD FIELD "AssigneeId" OF "IXTask" AS character FORMAT "x(40)" INITIAL ""
+ADD FIELD "TaskTitle" OF "IXTask" AS character FORMAT "x(160)" INITIAL ""
+ADD FIELD "StatusCode" OF "IXTask" AS character FORMAT "x(30)" INITIAL "Not started"
+ADD FIELD "DueDate" OF "IXTask" AS date
+ADD FIELD "DependencyId" OF "IXTask" AS character FORMAT "x(40)" INITIAL ""
+ADD FIELD "Blocker" OF "IXTask" AS character FORMAT "x(300)" INITIAL ""
+ADD FIELD "EvidenceRef" OF "IXTask" AS character FORMAT "x(300)" INITIAL ""
+ADD FIELD "UpdatedAt" OF "IXTask" AS datetime-tz
+ADD FIELD "UpdatedBy" OF "IXTask" AS character FORMAT "x(40)" INITIAL ""
+ADD INDEX "IXTaskPK" ON "IXTask"
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "TaskId" ASCENDING
+ADD INDEX "IXTaskModeProject" ON "IXTask"
+  AREA "Schema Area"
+  INDEX-FIELD "ModeCode" ASCENDING
+  INDEX-FIELD "ProjectId" ASCENDING
+ADD INDEX "IXTaskModeOwner" ON "IXTask"
+  AREA "Schema Area"
+  INDEX-FIELD "ModeCode" ASCENDING
+  INDEX-FIELD "AssigneeId" ASCENDING
+
+ADD TABLE "IXTender" AREA "Schema Area"
+ADD FIELD "TenderId" OF "IXTender" AS character FORMAT "x(40)" INITIAL ""
+ADD FIELD "ModeCode" OF "IXTender" AS character FORMAT "x(4)" INITIAL "REAL"
+ADD FIELD "ReferenceNo" OF "IXTender" AS character FORMAT "x(80)" INITIAL ""
+ADD FIELD "TenderTitle" OF "IXTender" AS character FORMAT "x(200)" INITIAL ""
+ADD FIELD "Category" OF "IXTender" AS character FORMAT "x(80)" INITIAL ""
+ADD FIELD "CloseDate" OF "IXTender" AS date
+ADD FIELD "SourceUrl" OF "IXTender" AS character FORMAT "x(500)" INITIAL ""
+ADD FIELD "LastRefreshed" OF "IXTender" AS datetime-tz
+ADD INDEX "IXTenderPK" ON "IXTender"
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "TenderId" ASCENDING
+ADD INDEX "IXTenderModeRef" ON "IXTender"
+  AREA "Schema Area"
+  UNIQUE
+  INDEX-FIELD "ModeCode" ASCENDING
+  INDEX-FIELD "ReferenceNo" ASCENDING
+
+ADD TABLE "IXTenderRequirement" AREA "Schema Area"
+ADD FIELD "RequirementId" OF "IXTenderRequirement" AS character FORMAT "x(40)" INITIAL ""
+ADD FIELD "ModeCode" OF "IXTenderRequirement" AS character FORMAT "x(4)" INITIAL "REAL"
+ADD FIELD "TenderId" OF "IXTenderRequirement" AS character FORMAT "x(40)" INITIAL ""
+ADD FIELD "LabelText" OF "IXTenderRequirement" AS character FORMAT "x(160)" INITIAL ""
+ADD FIELD "Mandatory" OF "IXTenderRequirement" AS logical INITIAL yes
+ADD FIELD "StatusCode" OF "IXTenderRequirement" AS character FORMAT "x(20)" INITIAL "Missing"
+ADD FIELD "DocumentRef" OF "IXTenderRequirement" AS character FORMAT "x(120)" INITIAL ""
+ADD INDEX "IXTenderReqPK" ON "IXTenderRequirement"
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "RequirementId" ASCENDING
+ADD INDEX "IXTenderReqTender" ON "IXTenderRequirement"
+  AREA "Schema Area"
+  INDEX-FIELD "ModeCode" ASCENDING
+  INDEX-FIELD "TenderId" ASCENDING
+
+ADD TABLE "IXInvoice" AREA "Schema Area"
+ADD FIELD "InvoiceId" OF "IXInvoice" AS character FORMAT "x(40)" INITIAL ""
+ADD FIELD "ModeCode" OF "IXInvoice" AS character FORMAT "x(4)" INITIAL "REAL"
+ADD FIELD "InvoiceNo" OF "IXInvoice" AS character FORMAT "x(60)" INITIAL ""
+ADD FIELD "ProjectId" OF "IXInvoice" AS character FORMAT "x(40)" INITIAL ""
+ADD FIELD "TotalCents" OF "IXInvoice" AS int64 INITIAL 0
+ADD FIELD "DueDate" OF "IXInvoice" AS date
+ADD INDEX "IXInvoicePK" ON "IXInvoice"
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "InvoiceId" ASCENDING
+ADD INDEX "IXInvoiceModeNo" ON "IXInvoice"
+  AREA "Schema Area"
+  UNIQUE
+  INDEX-FIELD "ModeCode" ASCENDING
+  INDEX-FIELD "InvoiceNo" ASCENDING
+
+ADD TABLE "IXPayment" AREA "Schema Area"
+ADD FIELD "PaymentId" OF "IXPayment" AS character FORMAT "x(40)" INITIAL ""
+ADD FIELD "ModeCode" OF "IXPayment" AS character FORMAT "x(4)" INITIAL "REAL"
+ADD FIELD "InvoiceId" OF "IXPayment" AS character FORMAT "x(40)" INITIAL ""
+ADD FIELD "PaymentRef" OF "IXPayment" AS character FORMAT "x(80)" INITIAL ""
+ADD FIELD "AmountCents" OF "IXPayment" AS int64 INITIAL 0
+ADD FIELD "StatusCode" OF "IXPayment" AS character FORMAT "x(20)" INITIAL "Recorded"
+ADD INDEX "IXPaymentPK" ON "IXPayment"
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "PaymentId" ASCENDING
+ADD INDEX "IXPaymentDedupe" ON "IXPayment"
+  AREA "Schema Area"
+  UNIQUE
+  INDEX-FIELD "ModeCode" ASCENDING
+  INDEX-FIELD "PaymentRef" ASCENDING
+
+ADD TABLE "IXFunding" AREA "Schema Area"
+ADD FIELD "FundingId" OF "IXFunding" AS character FORMAT "x(40)" INITIAL ""
+ADD FIELD "ModeCode" OF "IXFunding" AS character FORMAT "x(4)" INITIAL "REAL"
+ADD FIELD "ProjectId" OF "IXFunding" AS character FORMAT "x(40)" INITIAL ""
+ADD FIELD "PurposeText" OF "IXFunding" AS character FORMAT "x(240)" INITIAL ""
+ADD FIELD "RequiredCents" OF "IXFunding" AS int64 INITIAL 0
+ADD FIELD "AvailableCents" OF "IXFunding" AS int64 INITIAL 0
+ADD FIELD "StatusCode" OF "IXFunding" AS character FORMAT "x(40)" INITIAL "Draft"
+ADD INDEX "IXFundingPK" ON "IXFunding"
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "FundingId" ASCENDING
+ADD INDEX "IXFundingMode" ON "IXFunding"
+  AREA "Schema Area"
+  INDEX-FIELD "ModeCode" ASCENDING
+  INDEX-FIELD "StatusCode" ASCENDING
+
+ADD TABLE "IXMeeting" AREA "Schema Area"
+ADD FIELD "MeetingId" OF "IXMeeting" AS character FORMAT "x(40)" INITIAL ""
+ADD FIELD "ModeCode" OF "IXMeeting" AS character FORMAT "x(4)" INITIAL "REAL"
+ADD FIELD "Topic" OF "IXMeeting" AS character FORMAT "x(160)" INITIAL ""
+ADD FIELD "StartsAt" OF "IXMeeting" AS datetime-tz
+ADD FIELD "AgendaText" OF "IXMeeting" AS character FORMAT "x(1000)" INITIAL ""
+ADD FIELD "StatusCode" OF "IXMeeting" AS character FORMAT "x(20)" INITIAL "Scheduled"
+ADD INDEX "IXMeetingPK" ON "IXMeeting"
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "MeetingId" ASCENDING
+ADD INDEX "IXMeetingModeStart" ON "IXMeeting"
+  AREA "Schema Area"
+  INDEX-FIELD "ModeCode" ASCENDING
+  INDEX-FIELD "StartsAt" ASCENDING
+
+ADD TABLE "IXNotificationJob" AREA "Schema Area"
+ADD FIELD "JobId" OF "IXNotificationJob" AS character FORMAT "x(40)" INITIAL ""
+ADD FIELD "ModeCode" OF "IXNotificationJob" AS character FORMAT "x(4)" INITIAL "REAL"
+ADD FIELD "MeetingId" OF "IXNotificationJob" AS character FORMAT "x(40)" INITIAL ""
+ADD FIELD "KindCode" OF "IXNotificationJob" AS character FORMAT "x(20)" INITIAL "Reminder"
+ADD FIELD "ScheduledFor" OF "IXNotificationJob" AS datetime-tz
+ADD FIELD "StatusCode" OF "IXNotificationJob" AS character FORMAT "x(20)" INITIAL "Pending"
+ADD FIELD "Attempts" OF "IXNotificationJob" AS integer INITIAL 0
+ADD FIELD "DedupeKey" OF "IXNotificationJob" AS character FORMAT "x(160)" INITIAL ""
+ADD INDEX "IXNotificationPK" ON "IXNotificationJob"
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "JobId" ASCENDING
+ADD INDEX "IXNotificationDedupe" ON "IXNotificationJob"
+  AREA "Schema Area"
+  UNIQUE
+  INDEX-FIELD "DedupeKey" ASCENDING
+
+ADD TABLE "IXRepositoryRecord" AREA "Schema Area"
+ADD FIELD "ModeCode" OF "IXRepositoryRecord" AS character FORMAT "x(8)" INITIAL "REAL"
+ADD FIELD "EntityName" OF "IXRepositoryRecord" AS character FORMAT "x(40)" INITIAL ""
+ADD FIELD "RecordId" OF "IXRepositoryRecord" AS character FORMAT "x(100)" INITIAL ""
+ADD FIELD "RelationOne" OF "IXRepositoryRecord" AS character FORMAT "x(100)" INITIAL ""
+ADD FIELD "RelationTwo" OF "IXRepositoryRecord" AS character FORMAT "x(100)" INITIAL ""
+ADD FIELD "PayloadBase64" OF "IXRepositoryRecord" AS character FORMAT "x(30000)" INITIAL ""
+ADD FIELD "UpdatedAt" OF "IXRepositoryRecord" AS datetime-tz
+ADD INDEX "IXRepositoryRecordPK" ON "IXRepositoryRecord"
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "ModeCode" ASCENDING
+  INDEX-FIELD "EntityName" ASCENDING
+  INDEX-FIELD "RecordId" ASCENDING
+ADD INDEX "IXRepositoryRelation" ON "IXRepositoryRecord"
+  AREA "Schema Area"
+  INDEX-FIELD "ModeCode" ASCENDING
+  INDEX-FIELD "EntityName" ASCENDING
+  INDEX-FIELD "RelationOne" ASCENDING
+
+ADD TABLE "IXRepositoryMeta" AREA "Schema Area"
+ADD FIELD "MetaKey" OF "IXRepositoryMeta" AS character FORMAT "x(80)" INITIAL ""
+ADD FIELD "MetaValue" OF "IXRepositoryMeta" AS character FORMAT "x(30000)" INITIAL ""
+ADD FIELD "UpdatedAt" OF "IXRepositoryMeta" AS datetime-tz
+ADD INDEX "IXRepositoryMetaPK" ON "IXRepositoryMeta"
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "MetaKey" ASCENDING
+
+.

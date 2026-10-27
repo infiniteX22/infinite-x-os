@@ -1,0 +1,31 @@
+ADD TABLE "IXRepositoryRecord" AREA "Schema Area"
+ADD FIELD "ModeCode" OF "IXRepositoryRecord" AS character FORMAT "x(8)" INITIAL "REAL"
+ADD FIELD "EntityName" OF "IXRepositoryRecord" AS character FORMAT "x(40)" INITIAL ""
+ADD FIELD "RecordId" OF "IXRepositoryRecord" AS character FORMAT "x(100)" INITIAL ""
+ADD FIELD "RelationOne" OF "IXRepositoryRecord" AS character FORMAT "x(100)" INITIAL ""
+ADD FIELD "RelationTwo" OF "IXRepositoryRecord" AS character FORMAT "x(100)" INITIAL ""
+ADD FIELD "PayloadBase64" OF "IXRepositoryRecord" AS character FORMAT "x(30000)" INITIAL ""
+ADD FIELD "UpdatedAt" OF "IXRepositoryRecord" AS datetime-tz
+ADD INDEX "IXRepositoryRecordPK" ON "IXRepositoryRecord"
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "ModeCode" ASCENDING
+  INDEX-FIELD "EntityName" ASCENDING
+  INDEX-FIELD "RecordId" ASCENDING
+ADD INDEX "IXRepositoryRelation" ON "IXRepositoryRecord"
+  AREA "Schema Area"
+  INDEX-FIELD "ModeCode" ASCENDING
+  INDEX-FIELD "EntityName" ASCENDING
+  INDEX-FIELD "RelationOne" ASCENDING
+
+ADD TABLE "IXRepositoryMeta" AREA "Schema Area"
+ADD FIELD "MetaKey" OF "IXRepositoryMeta" AS character FORMAT "x(80)" INITIAL ""
+ADD FIELD "MetaValue" OF "IXRepositoryMeta" AS character FORMAT "x(30000)" INITIAL ""
+ADD FIELD "UpdatedAt" OF "IXRepositoryMeta" AS datetime-tz
+ADD INDEX "IXRepositoryMetaPK" ON "IXRepositoryMeta"
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "MetaKey" ASCENDING
+.

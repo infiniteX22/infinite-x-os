@@ -1,0 +1,30 @@
+.env
+.env.*
+!.env.example
+
+# Operational records, transcripts, databases, provider jobs and generated runtimes.
+data/
+backups/
+uploads/*
+!uploads/.gitkeep
+docs/verification/
+
+# Secrets, local certificates and compiled/runtime output.
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+*.log
+*.pid
+*.lk
+*.lic
+*.r
+*.p12
+*.pem
+*.key
+*.keystore
+
+node_modules/
+npm-debug.log*
+.DS_Store
+Thumbs.db

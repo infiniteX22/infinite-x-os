@@ -1,0 +1,21 @@
+{
+  "version": "2.0",
+  "serviceName": "infinitex",
+  "handlers": [
+    {
+      "uri": "/health",
+      "class": "InfiniteX.RepositoryHandler",
+      "enabled": true
+    },
+    {
+      "uri": "/records/{mode}/{entity}",
+      "class": "InfiniteX.RepositoryHandler",
+      "enabled": true
+    },
+    {
+      "uri": "/records/{mode}",
+      "class": "InfiniteX.RepositoryHandler",
+      "enabled": true
+    }
+  ]
+}
