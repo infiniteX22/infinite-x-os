@@ -1,8 +1,16 @@
-# Submission verification — 27 October 2026 (Africa/Johannesburg)
+# Verification record
 
-This report separates checks run during the submission pass from older project evidence. It does not claim production readiness, delivered email or physical spoken recall.
+This report separates observed runtime behaviour, synthetic checks and unverified physical interaction. It does not claim production readiness, delivered email or a clean-checkout test.
 
-## Current submission-pass evidence
+## Documentation-only pass — 28 October 2026
+
+The documentation polish checked repository paths, environment-variable names, package scripts, OpenEdge database creation, ABL compilation, launcher assumptions, PAS mappings and tracked uploads. No application tests, provider sessions or fresh-install procedure were run during that pass.
+
+The clean-checkout review identified one manual setup gap: `openedge/verify-openedge.ps1` creates the OpenEdge database and compiles ABL, but the repository does not provision/deploy the PAS instance expected at `data/pasoe/ixos`. The README now states this explicitly.
+
+Tracked upload content consists only of `uploads/.gitkeep`. The intentionally tracked fictional/static visual assets are `assets/login-scene.png` and `docs/dashboard-preview.png`; no operational upload was found.
+
+## Submission-pass evidence — 27 October 2026
 
 ### Service health
 
@@ -47,6 +55,13 @@ The clearly identified fictional task was **LV board factory test** on **Warehou
   - At natural expiry the room showed `Session ended`, countdown `00:00`, local camera stream absent and zero live Wayne tracks.
 - Chrome fake media devices were used, so this proves media/session wiring and cleanup, not a physical spoken question or audible human assessment. No Presentation session or paid credit was used.
 - Context is supplied at session start. Live mid-session record retrieval is not claimed; explicit restart refreshes summaries and requires its normal consent/credit path.
+- A later physical voice-navigation check observed 12 of 13 requested sidebar routes opening. **Team & Tasks** failed because the provider produced “team in task” / singular “team and task”; those exact aliases and split `Open Finance` → `And present` handling were added and passed focused parser/dispatcher checks. A post-fix physical spoken retest is not recorded here.
+- Wayne does not receive a verified navigation-result callback. The application’s visible `Heard`, `Opening` and success/failure status is the source of truth; model speech is not evidence that navigation succeeded or failed.
+
+### Subsequent focused create-flow evidence
+
+- An isolated temporary-server check created a new project, created a task linked to it and read both records back with the relationship preserved. The fixture directory was removed afterwards.
+- The New Project and Assign Task click bindings were corrected so browser click events are not interpreted as edit IDs or draft objects. Syntax checks passed; this is not presented as a fresh-install UI test.
 
 ## Architecture evidence
 
@@ -55,8 +70,9 @@ The clearly identified fictional task was **LV board factory test** on **Warehou
 - Repository adapter: `openedge-repository.mjs` serialises active-mode entities and fails closed on rejected OpenEdge writes.
 - ABL write boundary: `openedge/sync-repository.p` / compiled local `.r`; validates mode, entity, permission metadata and payload bounds, then commits a revisioned snapshot.
 - Independent ABL read: `openedge/export-repository.p` / local compiled `.r`.
-- PAS transport: `openedge/InfiniteX/RepositoryHandler.cls` mapped by `openedge/infinitex.handlers`.
+- PAS transport: `openedge/InfiniteX/RepositoryHandler.cls` mapped by `openedge/infinitex.handlers`; this is an authenticated read/health service, not the browser mutation path.
 - SQLite role: local compatibility cache hydrated from OpenEdge on startup and restored from OpenEdge after a rejected write. It is not the claimed authoritative repository.
+- Typed core tables and `InfiniteX/BusinessRules.cls` are present, but the demonstrated repository stores operational entities through generic revisioned `IXRepositoryRecord` rows. The running deterministic calculations are applied in the Node business layer before the OpenEdge revision is committed.
 
 ## Reports definitions
 

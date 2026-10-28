@@ -1,126 +1,141 @@
-# INFINITE-X OS presentation guide
+# INFINITE-X OS evaluator guide
 
-## Three-minute walkthrough
+## Product and demonstration scenario
 
-Use **Demo Mode** and keep the browser at 100% zoom. The fictional account password is documented in the README; do not display a real credential during the presentation.
+INFINITE-X OS is an AI-powered project management workspace for organisations that need a connected view of delivery, people, commercial records and management follow-through.
 
-### 0:00–0:40 — an employee reports the problem
+The fictional demonstration company performs electrical construction and bids across multiple tender categories. The scenario shows how an employee-reported blocker can become visible to management, persist in OpenEdge, enter Wayne’s authorised briefing and support a follow-up communication.
 
-1. Sign in as **Sipho Cele — Electrician**.
-2. Open **Team & Tasks** from the sidebar.
-3. Find **LV board factory test** under **Warehouse LV installation**, select **Update**, and show the recorded fictional blocker: “Presentation demonstration: supplier witness confirmation pending,” with evidence reference **Demo witness request DEMO-2026-10-27**.
-4. If you need to demonstrate another save, adjust only the progress/evidence wording and select **Record update**. Point out the author, time, named task/project and evidence in **Update history**. Do not repeat the prepared update merely to prove persistence.
+## Submission demo video: 2–3 minutes
 
-What this proves: the role boundary allows an employee to report their assigned work, while verified completion remains a separate manager-controlled state.
+The submission video is a concise recorded walkthrough. Its link will be added later; this guide does not claim that it already exists.
 
-### 0:40–1:10 — the dashboard reflects the same record
+### 0:00–0:35 — record an operational issue
 
-1. Sign out and sign in as **Alex Mokoena — Director**.
+1. Sign in with the fictional employee account `sc`.
+2. Open **Team & Tasks**.
+3. Open **LV board factory test** under **Warehouse LV installation**.
+4. Record a progress update, blocker and evidence reference.
+
+Evidence shown: role-aware update permission, named employee/task/project, timestamped history and the distinction between reported and verified completion.
+
+### 0:35–1:05 — management sees the same record
+
+1. Sign out and use the fictional `director` account.
 2. Open **Dashboard**.
-3. Show **Latest team updates** and Wayne’s briefing. Follow **View project** or **View records** to show that the summary links back to operational records rather than a scripted slide.
+3. Show the latest team update and the linked Wayne briefing item.
+4. Follow the record link to the underlying task or project.
 
-Say: “One employee update becomes visible to management without re-keying the issue.”
+Evidence shown: the dashboard is calculated from operational records rather than a separate presentation dataset.
 
-### 1:10–2:25 — Wayne receives the authorised snapshot
+### 1:05–2:20 — review Wayne’s authorised context
 
-1. Select **Meet Wayne** in the sidebar or **Talk to Wayne** on the dashboard.
-2. Leave **Sandbox — approximately 60 seconds** selected. Do not use Presentation mode during rehearsal unless you deliberately accept its credit confirmation.
-3. Review the outbound context. Expand **Tasks summary** and confirm that it contains the latest named employee update and **Warehouse LV installation**. Show the privacy notice: selected summaries and microphone speech are processed externally.
-4. Accept and connect. The timer starts only after the provider session becomes active.
+1. Open **Meet Wayne**.
+2. Choose the sandbox session.
+3. Review the outbound categories and expand **Tasks summary**.
+4. Confirm that the named task, project and recorded blocker are present, then accept and connect.
 5. Ask: **“What is the latest recorded blocker on the warehouse project?”**
-6. Then ask: **“Draft an email to the client about that recorded blocker. Include a subject and complete body, but do not send it.”**
-7. Show the captured draft and **Copy** control in the room. Do not claim the email was sent.
+6. Ask: **“Draft an email to the client about that blocker. Include a subject and complete body, but do not send it.”**
+7. Show the captured draft and supporting record links.
 
-Wayne should identify Alex as the Director and himself as the operations assistant. If asked “How much do we have?”, he should distinguish total invoiced, recorded receipts, recorded expenses and outstanding receivables, and say that bank/cash balance is unavailable because none is recorded.
+Evidence shown: permission-filtered session-start grounding, external-processing disclosure, concise source-linked responses and draft-only email behaviour.
 
-### 2:25–3:00 — close the operational loop
+### 2:20–3:00 — show persistence and reporting
 
-1. Open **Business records** in the room and follow the named source back to the task or project.
-2. End the meeting. Explain that transcript continuity is saved locally/OpenEdge before provider-event deletion is requested.
-3. Open **Reports** and show the named project-progress bars, the tender-status donut and the financial comparison. State that R255,000 invoiced, R10,000 recorded receipts and R207,000 recorded expenses are separate record categories—not cash balance or profit.
+1. End the Wayne session and open **Reports**.
+2. Show project completion, tracked tenders by status and the invoiced/receipts/expenses comparison.
+3. State that those finance categories are records—not cash balance, recognised revenue or profit.
+4. Reference the independent OpenEdge export evidence in [docs/VERIFICATION.md](docs/VERIFICATION.md).
 
-## Wayne voice presentation commands
+## Live presentation: 15 minutes plus 5 minutes Q&A
 
-While a Wayne session is active, speak one explicit command at a time:
+| Time | Section | Evidence |
+|---|---|---|
+| 0:00–2:00 | Problem and users | Fragmented delivery, tender, finance and meeting records; directors, project managers, employees, estimators and finance users |
+| 2:00–5:00 | Dashboard and modules | Calculated KPIs, linked records, responsive operational modules and Demo/Real isolation |
+| 5:00–8:00 | Connected employee workflow | Task update → dashboard → source record → role boundary |
+| 8:00–11:00 | OpenEdge integration | Local AVM/ABL transactional write, authoritative revision, independent export and SQLite cache hydration |
+| 11:00–13:30 | Wayne | Outbound review, LiveAvatar FULL session, transcript, source links and voice navigation |
+| 13:30–15:00 | Reports, privacy and limits | Period filters, financial labels, external processing, email preview and production considerations |
+| 15:00–20:00 | Q&A | Architecture, business value, security boundaries and next steps |
 
-- **“Wayne, open Reports and present.”** opens Reports and changes the room into the in-application presentation layout.
-- **“Open Finance.”**, **“Open Team and Tasks.”**, **“Open Projects and present.”** and **“Open Team and Tasks and present their progress.”** use the same allowlisted navigation path.
-- All authorised sidebar destinations are supported: Dashboard, CRM, Projects, Team & Tasks, Quotations & Invoices, Tenders, Funding, Finance, Compliance, Documents, AI Meetings, Reports and Settings. Useful aliases include *team*, *quotations*, *invoices* and *tender radar*.
-- **“Open Tenders.”** navigates the underlying application without changing the room layout.
-- **“Present this report”** or **“Present this page”** presents the currently open section.
-- **“Go fullscreen.”** requests fullscreen for INFINITE-X OS. Browser activation rules may require selecting the displayed **Enter fullscreen** button once.
-- **“Stop presenting,” “Stop sharing the screen,”** or **“Bring Wayne back”** exits application presentation and restores the normal room without ending the session.
+## Supported Wayne controls
 
-These are local, allowlisted commands recognised only from final **user** transcript events for the active provider session. They are not LiveAvatar tools, do not control Teams or Zoom, and cannot open arbitrary URLs. Wayne’s speech, interim transcript text, historical transcripts and ordinary questions such as “How are our tenders doing?” do not execute navigation.
+While an active session is receiving final user transcripts, explicit commands can navigate to authorised sidebar sections:
 
-The room shows **Heard**, **Opening** and the final success or failure for each recognised command. Treat this application status as authoritative: the provider does not receive a verified mid-session navigation-result callback, so Wayne must not claim success independently.
+- `Open Dashboard`
+- `Open CRM`
+- `Open Projects and present`
+- `Open Team and Tasks and present`
+- `Open Quotations and Invoices`
+- `Open Tenders and present`
+- `Open Funding`
+- `Open Finance and present`
+- `Open Compliance`
+- `Open Documents`
+- `Open AI Meetings`
+- `Open Reports and present`
+- `Open Settings`
 
-Reports, Tender Radar, Finance, Team & Tasks and Projects prepare privacy-filtered summaries using the visible period and available search/status/category filters. Other authorised sections still navigate and present, but use a generic section summary. The current provider integration supplies dynamic variables only when a session starts; it does not expose a verified mid-session context update. Use **Review context and restart Wayne** to inspect and explicitly consent to the refreshed context. This preserves the logical meeting but starts a new provider session; it never happens automatically.
+Other controls include `Present this page`, `Go fullscreen`, `Stop presenting`, `Stop sharing the screen` and `Bring Wayne back`.
 
-The Transcript tab distinguishes **Waiting for speech**, **Receiving transcript**, saved final text and connection/persistence errors. Interim provider chunks are provisional; only final user events can execute commands or become durable discussion. For a live check, turn the microphone on and speak one command. If no final user transcript appears after speech is detected, do not claim voice navigation worked—record the provider/microphone limitation and use visible navigation controls.
+These are local application commands, not LiveAvatar tools. Only final **user** transcript events from the active session can execute them. Interim text, Wayne’s speech, historical transcripts, ordinary business questions and arbitrary URLs do not trigger navigation. The visible `Heard`, `Opening` and success/failure status is authoritative because the provider does not receive the local navigation result.
 
-## Business problem and use case
+Reports, Tender Radar, Finance, Team & Tasks and Projects have section-specific privacy-filtered presentation summaries. Other authorised sections use a generic visible-section summary. Navigation alone does not update Wayne’s knowledge. Use **Review context and restart Wayne** to inspect and approve refreshed page context for a new provider session; the logical meeting and notes remain available.
 
-Electrical-construction work produces dependencies, site evidence, approvals, invoices and funding needs across multiple people. Tendering adds deadlines and mandatory-document checks across all categories. INFINITE-X OS joins those records so a reported blocker can be traced from the employee update to management visibility, an authorised AI briefing, a meeting and an approved follow-up action.
-
-## Verified integration points
+## Integration evidence
 
 ### OpenEdge
 
-- Browser task update: `POST /api/tasks/{taskId}/update` in `server.mjs`.
-- Deterministic transition rule: `taskStatusUpdate` in `business-core.mjs`.
-- Live repository adapter: `openedge-repository.mjs` serialises active-mode entities including `tasks` and `task_updates`.
-- ABL write boundary: `openedge/sync-repository.r` (source: `sync-repository.p`) validates the mode, entity, role/operation and payload bounds, then commits a revisioned mode snapshot transactionally.
-- Independent ABL read: `openedge/export-repository.r` returns the stored revision and authorised entity rows using the server-only token.
-- Restart hydration: the SQLite compatibility cache is replaced from that OpenEdge export. A rejected OpenEdge write returns an error and restores the cache; there is no silent operational fallback.
-- PAS read transport: `openedge/InfiniteX/RepositoryHandler.cls`, mapped by `openedge/infinitex.handlers`. The browser mutation path itself uses the local AVM adapter, not PAS; do not describe it as a PAS write.
-
-The current live repository stores operational rows as named `IXRepositoryRecord` entities with relationship fields and encoded JSON payloads. Typed OpenEdge schema and `InfiniteX/BusinessRules.cls` are present, but the demonstrated browser repository path is the revisioned snapshot service above.
+- Browser mutations are handled by `server.mjs` and deterministic rules in `business-core.mjs`.
+- `openedge-repository.mjs` serialises the active mode and invokes the local AVM.
+- `openedge/sync-repository.p` validates repository metadata and commits a revisioned snapshot transactionally.
+- `openedge/export-repository.p` provides token-protected independent reads and restart hydration.
+- OpenEdge is authoritative; SQLite is the compatibility cache.
+- PAS exposes authenticated health and repository-read routes through `InfiniteX.RepositoryHandler`. It is not the browser-write path.
+- Typed schema and `InfiniteX/BusinessRules.cls` are present, but the demonstrated persistence path uses generic `IXRepositoryRecord` revisions.
 
 ### Runtime AI
 
-- The server builds an allowlisted, role- and mode-filtered snapshot in `avatarBriefing`.
-- `liveavatar-provider.mjs` creates the existing LiveAvatar voice-agent session and supplies the named values through `voice_agent.dynamic_variables`.
-- The browser uses the vendored LiveKit client and mirrors the provider Web SDK’s documented `agent-response` event schema. Current `*.transcription.chunk` events are provisional; current `user.transcription` and `avatar.transcription` events are final. No paid OpenAI fallback is required for this path.
-- Current business facts and recorded meeting discussion are separate variables. The latest task update is included in `tasks_summary`; historical discussion comes only from captured transcript/recap records.
-- Email drafting is a suggestion captured from Wayne’s response. The application does not send it or mark it delivered. Meeting-minutes email also remains in preview/outbox because SMTP is not configured.
+- `avatarBriefing` builds allowlisted role- and mode-filtered summaries.
+- `liveavatar-provider.mjs` starts a LiveAvatar FULL voice-agent session and supplies the declared dynamic variables.
+- Context is supplied at session start; no question-driven RAG, MCP tool calling or live mid-session record retrieval is claimed.
+- Current business facts and transcript-derived meeting history are kept separate.
+- Final provider transcript events are persisted before provider-event deletion is requested.
+- The optional OpenAI text route is separate and is not required by Wayne.
 
-## Short privacy answers
+## Privacy and security answers
 
-**What leaves the application?** Only the outbound summaries shown in the review panel, plus speech captured after microphone permission is granted.
+**What is sent externally?** The summaries visible in the outbound review and speech captured after microphone permission is granted.
 
-**What is excluded?** The server-side allowlist removes contact details, banking data, credentials, exact addresses, document bodies and confidential contract terms. Real Mode remains blocked from LiveAvatar sessions.
+**What is removed from summaries?** Contact details, banking information, credentials, exact addresses, document bodies and confidential contract terms. Microphone speech cannot be pre-redacted.
 
-**Can microphone speech be redacted first?** No. It is processed externally as spoken; the review panel states this explicitly.
+**Does the provider receive Real Mode records?** No. LiveAvatar sessions are blocked in Real Mode in this implementation.
 
-**Is deletion guaranteed?** No. INFINITE-X OS persists authorised continuity first and then requests provider-event deletion with bounded retries. Provider acknowledgement is not proof that backups or every downstream copy were erased.
+**Is provider deletion guaranteed?** No. The application saves authorised continuity first and requests provider-event deletion with bounded retries. A provider acknowledgement is not proof that backups or all downstream copies were erased.
 
-**Are secrets in the browser?** No. LiveAvatar credentials stay in server-side `.env`; the browser receives only the short-lived connection data required by the provider SDK.
+**Does Wayne send email?** The default submission environment is preview/outbox only. A generated email remains a draft unless a separately configured SMTP adapter confirms delivery after explicit review.
 
-## Current limitations and honest fallback
+## Current limitations and evaluator fallback
 
-- The live spoken result depends on LiveAvatar availability, account limits, microphone permission and network/media connectivity. The sandbox session is short and must not be restarted automatically.
-- Context is supplied at session start. Mid-session retrieval is not claimed; select history or explicitly restart to refresh it.
-- Voice navigation uses final user transcript events in the browser because no supported structured LiveAvatar action/tool interface was verified for this account integration. Physical spoken-command recognition still depends on the provider returning a final user transcript event.
-- Audio quality and the exact phrasing of a generated email are provider behaviours. The application captures a draft only when the response contains a subject and body.
-- Provider-event deletion cannot prove deletion from provider backups. SMTP remains preview-only unless an authorised no-cost account is configured and explicitly tested.
-- The installed OpenEdge licence is suitable for the local demonstration. It is not presented as a production remote-database entitlement.
+- A clean checkout requires a separately installed/licensed OpenEdge 12.8 environment and manual PAS instance provisioning.
+- Evaluators need their own LiveAvatar API key and business voice agent until a hosted demo is available.
+- Sandbox duration, credits, recognition quality and media connectivity are provider-dependent.
+- Mid-session business-context refresh is not available; the review-and-restart flow is explicit.
+- Browser print/save-to-PDF is supported; server-generated quotation/invoice PDFs are not implemented.
+- Local authentication and file storage are evaluation-grade, not production-ready.
 
-If Wayne fails, keep the room open and show the readable provider error, outbound review and **Business records**. Then demonstrate the same named update in **Team & Tasks** and **Dashboard**, and explain that the deterministic operational/OpenEdge path remains available while the external avatar service is unavailable. Do not substitute a scripted answer or claim a live AI response.
+If LiveAvatar is unavailable, the operational workflow remains demonstrable through **Team & Tasks**, **Dashboard**, **Business records**, OpenEdge export evidence and **Reports**. Show the provider error honestly; do not substitute a scripted response.
 
-## Submission checklist
+## Judging criteria mapping
 
-- [x] `README.md` launches the clone at `http://127.0.0.1:4319` and distinguishes verified behaviour from configuration-dependent services.
-- [x] `.env.example` lists environment-variable names only; `.env`, service tokens, databases, uploads and transcripts are ignored.
-- [x] OpenEdge broker/PAS and Node service start with `scripts/start-services.ps1` and `npm start` (or `Start INFINITE-X OS.cmd`).
-- [x] Demo evidence includes the named employee update, dashboard reflection, independent OpenEdge export evidence and outbound Wayne review.
-- [x] Reports charts were value-checked and visually inspected at 1440×900 and 390×844.
-- [x] No Presentation-mode session or paid credit was consumed during automated verification.
-- [x] Demo/Real isolation was checked and Real Mode was not populated with the demonstration update.
-- [x] The original Infinite-X OS and PathBridge remained untouched.
-- [ ] Manually ask Wayne the suggested warehouse-project question with a physical microphone and assess the spoken answer; the automated check used synthetic browser media.
-- [ ] Manually request the email draft and show it without sending. SMTP remains intentionally unconfigured.
+| Criterion | Weight | Repository evidence |
+|---|---:|---|
+| Technical complexity | 20% | Authoritative OpenEdge repository, transactional ABL revision service, cache hydration, role/mode isolation, deterministic business rules, LiveAvatar media/transcript lifecycle |
+| Business impact | 25% | Connected accountability, tender readiness, receivables/funding visibility and meeting follow-through; benefits are intended rather than measured |
+| Completeness | 15% | Working sidebar modules, dashboard links, create/edit workflows, reports, meeting history and Demo/Real separation; limitations are documented |
+| Production readiness | 15% | Permission checks, fail-closed OpenEdge writes, duplicate prevention, privacy review and retention controls, alongside explicit authentication/storage/PAS deployment gaps |
+| Innovation | 10% | Operations assistant grounded in reviewed active-mode summaries, source links, transcript continuity and local voice-controlled presentation |
+| Presentation & demo | 15% | Connected 2–3 minute workflow, 15-minute live structure, visible integration evidence and honest provider fallback |
 
-## Scope of challenge mapping
-
-This guide maps only to the requirements and integration claims already documented in this repository: meaningful OpenEdge persistence/ABL rules, connected operational records, runtime AI grounding, Demo/Real isolation and an honest demonstration. No separate official judging rubric was found in the project, so no additional scoring criteria are inferred.
+The table maps the organiser’s criteria to available evidence. It does not assert a score or convert unverified behaviour into a completed requirement.
