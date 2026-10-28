@@ -27,6 +27,10 @@ export function combinePresentationCommandFragment(previous, current, elapsedMs 
   const prior = normalise(previous);
   const next = normalise(current);
   if (/^(?:wayne )?open$/.test(next)) return { pending: "Open", commandText: null };
+  if (/^open .+/.test(prior) && elapsedMs >= 0 && elapsedMs <= 5000 && /^(?:and|to) present$/.test(next)) {
+    const combined = `${prior} and present`;
+    return parsePresentationCommand(combined) ? { pending: null, commandText: combined } : { pending: null, commandText: null };
+  }
   if (prior === "open" && elapsedMs >= 0 && elapsedMs <= 5000 && next) {
     const combined = `Open ${String(current || "").trim()}`;
     return parsePresentationCommand(combined) ? { pending: null, commandText: combined } : { pending: null, commandText: null };

@@ -9,6 +9,8 @@ test("explicit navigation commands resolve only allowlisted application routes",
   assert.deepEqual(parsePresentationCommand("Open tender radar"), { type: "open", route: "tenders", present: false });
   assert.deepEqual(parsePresentationCommand("Open Finance"), { type: "open", route: "finance", present: false });
   assert.deepEqual(parsePresentationCommand("Open Team and Tasks"), { type: "open", route: "team", present: false });
+  assert.deepEqual(parsePresentationCommand("Open team and task and present"), { type: "open", route: "team", present: true });
+  assert.deepEqual(parsePresentationCommand("Open team in task and present"), { type: "open", route: "team", present: true });
   assert.deepEqual(parsePresentationCommand("Open Team and Tasks and present their progress"), { type: "open", route: "team", present: true });
   assert.deepEqual(parsePresentationCommand("Open Projects and present"), { type: "open", route: "projects", present: true });
   assert.deepEqual(parsePresentationCommand("Open tenders to present."), { type: "open", route: "tenders", present: true });
@@ -33,6 +35,7 @@ test("ordinary questions and quoted examples do not cause navigation", () => {
 test("split final speech joins only an explicit open prefix to an allowlisted destination", () => {
   assert.deepEqual(combinePresentationCommandFragment(null, "Open.", 0), { pending: "Open", commandText: null });
   assert.deepEqual(combinePresentationCommandFragment("Open", "Reports and present.", 900), { pending: null, commandText: "Open Reports and present." });
+  assert.deepEqual(combinePresentationCommandFragment("Open Finance.", "And present.", 800), { pending: null, commandText: "open finance and present" });
   assert.deepEqual(combinePresentationCommandFragment("Open", "Settings.", 1400), { pending: null, commandText: "Open Settings." });
   assert.deepEqual(combinePresentationCommandFragment("Open", "Payroll.", 1400), { pending: null, commandText: "Open Payroll." });
   assert.deepEqual(parsePresentationCommand("Open Payroll."), { type: "unknown-route", label: "payroll" });

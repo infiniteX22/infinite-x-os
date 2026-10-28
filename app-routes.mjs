@@ -2,7 +2,7 @@ export const APP_ROUTES = Object.freeze([
   { route:"dashboard", icon:"home", label:"Dashboard", heading:"Business overview", aliases:["dashboard","home","business overview"] },
   { route:"crm", icon:"users", label:"CRM", heading:"CRM", aliases:["crm","clients","client register"] },
   { route:"projects", icon:"folder", label:"Projects", heading:"Projects", aliases:["projects","project register","jobs"] },
-  { route:"team", icon:"tasks", label:"Team & Tasks", heading:"Team & Tasks", aliases:["team","team and tasks","tasks","employees"] },
+  { route:"team", icon:"tasks", label:"Team & Tasks", heading:"Team & Tasks", aliases:["team","team and tasks","team and task","team in tasks","team in task","team tasks","team task","tasks","employees"] },
   { route:"quotations", icon:"invoice", label:"Quotations & Invoices", heading:"Quotations & Invoices", aliases:["quotations","quotes","invoices","quotations and invoices"] },
   { route:"tenders", icon:"briefcase", label:"Tenders", heading:"Tender Radar", aliases:["tenders","tender radar","bids"] },
   { route:"funding", icon:"coins", label:"Funding", heading:"Funding", aliases:["funding","funding readiness"] },
