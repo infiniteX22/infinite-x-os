@@ -23,6 +23,17 @@ export function parsePresentationCommand(text) {
   return route ? { type: "open", route, present: Boolean(open[2]) } : { type: "unknown-route", label: open[1] };
 }
 
+export function combinePresentationCommandFragment(previous, current, elapsedMs = 0) {
+  const prior = normalise(previous);
+  const next = normalise(current);
+  if (/^(?:wayne )?open$/.test(next)) return { pending: "Open", commandText: null };
+  if (prior === "open" && elapsedMs >= 0 && elapsedMs <= 5000 && next) {
+    const combined = `Open ${String(current || "").trim()}`;
+    return parsePresentationCommand(combined) ? { pending: null, commandText: combined } : { pending: null, commandText: null };
+  }
+  return { pending: null, commandText: String(current || "").trim() || null };
+}
+
 export function canOpenPresentationRoute(route, permissions = {}, role = "") {
   if (!APP_ROUTES.some(item => item.route === route)) return false;
   if (["finance", "funding", "quotations"].includes(route)) return Boolean(permissions.finance);

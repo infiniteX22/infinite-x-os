@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { acceptPresentationEvent, canOpenPresentationRoute, parsePresentationCommand, resolvePresentationRoute } from "../wayne-presentation.mjs";
+import { acceptPresentationEvent, canOpenPresentationRoute, combinePresentationCommandFragment, parsePresentationCommand, resolvePresentationRoute } from "../wayne-presentation.mjs";
 import { APP_ROUTES, routeHeading } from "../app-routes.mjs";
 import { dispatchWayneCommand } from "../wayne-navigation.mjs";
 
@@ -28,6 +28,16 @@ test("ordinary questions and quoted examples do not cause navigation", () => {
   assert.equal(parsePresentationCommand("Can you explain the reports?"), null);
   assert.equal(parsePresentationCommand('Say "Open Reports" as an example'), null);
   assert.equal(parsePresentationCommand("I said open Tenders"), null);
+});
+
+test("split final speech joins only an explicit open prefix to an allowlisted destination", () => {
+  assert.deepEqual(combinePresentationCommandFragment(null, "Open.", 0), { pending: "Open", commandText: null });
+  assert.deepEqual(combinePresentationCommandFragment("Open", "Reports and present.", 900), { pending: null, commandText: "Open Reports and present." });
+  assert.deepEqual(combinePresentationCommandFragment("Open", "Settings.", 1400), { pending: null, commandText: "Open Settings." });
+  assert.deepEqual(combinePresentationCommandFragment("Open", "Payroll.", 1400), { pending: null, commandText: "Open Payroll." });
+  assert.deepEqual(parsePresentationCommand("Open Payroll."), { type: "unknown-route", label: "payroll" });
+  assert.deepEqual(combinePresentationCommandFragment("Open", "Reports.", 6000), { pending: null, commandText: "Reports." });
+  assert.deepEqual(combinePresentationCommandFragment(null, "Reports and present.", 0), { pending: null, commandText: "Reports and present." });
 });
 
 test("route permissions reject finance and settings where the role lacks access", () => {
