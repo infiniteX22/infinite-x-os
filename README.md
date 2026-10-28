@@ -10,7 +10,7 @@ There is currently no hosted public application.
 
 ## Demo video
 
-[Watch the 3-minute INFINITE-X OS demonstration](https://youtu.be/Y8l-lc5cgQE)
+[Watch the 3-minute INFINITE-X OS demonstration](https://youtu.be/Si52PP4-D6M)
 
 ## Business problem, target users and intended benefits
 
