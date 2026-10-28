@@ -6,7 +6,11 @@ INFINITE-X OS is an AI-powered project management workspace that connects operat
 
 The included fictional company demonstrates electrical construction and multi-category tendering. That scenario exercises the platform; it does not limit the product to one industry.
 
-There is currently no hosted public demo. A short submission video will be linked when it is available; local evaluation does not depend on that video.
+There is currently no hosted public application.
+
+## Demo video
+
+[Watch the 3-minute INFINITE-X OS demonstration](https://youtu.be/Y8l-lc5cgQE)
 
 ## Business problem, target users and intended benefits
 
@@ -227,7 +231,6 @@ Then reference each declared variable in clearly labelled sections. Every applic
 - Quotations and invoices use browser print/save-to-PDF; server-generated PDFs are not implemented.
 - Authentication uses SHA-256 demo password hashes and in-memory sessions. Production requires a modern password KDF, durable session storage, HTTPS, CSRF controls, rate limiting and security review.
 - File storage is local and intended for the evaluation environment; production requires managed storage, malware scanning, quotas and backup policy.
-- No hosted public demo or demo-video URL is claimed yet.
 
 ## Verification and supporting documentation
 
