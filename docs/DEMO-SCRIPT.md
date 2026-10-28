@@ -1,6 +1,6 @@
 # Demonstration guide moved
 
-Use the current [presentation guide](../PRESENTATION-GUIDE.md). It contains the verified three-minute workflow, current LiveAvatar route, privacy answers, OpenEdge evidence and fallback. This pointer replaces the older script so that presentation material does not retain stale provider-configuration claims.
+Use the current [usage and evaluation guide](USAGE.md). It contains the short evaluator workflow, current LiveAvatar route, privacy answers, OpenEdge evidence and fallback. This pointer replaces the older script so that demonstration material does not retain stale provider-configuration claims.
 
 <!-- Previous five-minute script retired after the focused presentation review. -->
 

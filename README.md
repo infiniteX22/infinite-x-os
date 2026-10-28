@@ -233,7 +233,7 @@ Then reference each declared variable in clearly labelled sections. Every applic
 
 No fresh-install verification was performed during the documentation polish. Existing evidence and its limits are recorded in:
 
-- [Presentation guide](PRESENTATION-GUIDE.md): evaluator-facing walkthrough, controls and judging-criteria mapping.
+- [Usage and evaluation guide](docs/USAGE.md): evaluator walkthrough, Wayne controls, privacy notes and judging-criteria mapping.
 - [Verification record](docs/VERIFICATION.md): observed checks, synthetic tests and known limitations.
 - [OpenEdge integration notes](openedge/README.md): repository paths, ABL components and PAS read service.
 - [Demo script](docs/DEMO-SCRIPT.md): supporting workflow notes.
